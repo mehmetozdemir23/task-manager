@@ -44,6 +44,7 @@ export function BasePlugin(context) {
                 const response = await axios({ method, url, data });
                 return response.data.data;
             } catch (error) {
+                console.log(error.response.data);
                 this.errors = error.response.data.errors;
                 for (const field in this.errors)
                     this.errors[field] = this.errors[field][0];

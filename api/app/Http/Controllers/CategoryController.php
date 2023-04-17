@@ -29,7 +29,7 @@ class CategoryController extends Controller
         $category = Category::create(
             array_merge(
                 $request->all(),
-                ['user_id' => auth()->id()]
+                ['user_id' => $request->user_id]
             )
         );
 

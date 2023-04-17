@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true;
 export const useAuthStore = defineStore({
   id: "authStore",
   state: () => ({
-    user: JSON.parse(localStorage.getItem("user")) || null,
+    user: JSON.parse(sessionStorage.getItem("user")) || null,
     errors: {},
   }),
   getters: {
@@ -20,7 +20,7 @@ export const useAuthStore = defineStore({
         await axios.post("login", credentials);
         const { data } = await axios.get("api/user");
         this.user = data;
-        localStorage.setItem("user", JSON.stringify(data));
+        sessionStorage.setItem("user", JSON.stringify(data));
       } catch (error) {
         this.errors = error.response.data;
       }
@@ -35,7 +35,7 @@ export const useAuthStore = defineStore({
         await axios.get("sanctum/csrf-cookie");
         const { data } = await axios.patch("api/user", userData);
         this.user = data.data;
-        localStorage.setItem("user", JSON.stringify(data));
+        sessionStorage.setItem("user", JSON.stringify(data));
       } catch (error) {
         this.errors = error.response.data.errors;
         for (const field in this.errors)

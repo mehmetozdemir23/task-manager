@@ -22,13 +22,13 @@ class StoreTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
+            'title' => 'required|unique:tasks,title|string|max:255',
             'description' => 'required|string',
             'due_date' => 'nullable|date',
             'priority_id' => 'required|exists:priorities,id',
             'category_id' => 'required|exists:categories,id',
             'status_id' => 'required|exists:categories,id',
-            'user_id' => 'required|in:'.auth()->id()
+            'user_id' => 'required|exists:users,id'
         ];
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute top-0 h-full">
+    <div class="absolute top-0 bottom-0 left-0 right-0 h-full">
         <div @scroll="handleScroll"
             class="relative p-8 flex space-x-4 w-max h-full">
             <div v-if="tasksByStatuses.size" class="flex space-x-4">
@@ -11,13 +11,13 @@
                             <TaskCard :task="task" @dragstart="event => startDrag(event, task)" />
                         </li>
                     </ul>
-                    <div v-else class="w-72 sm:max-w-md">
+                    <div v-else class="w-96">
 
                     </div>
                 </div>
             </div>
             <router-link :to="{ name: 'task.create' }" :class="{ 'hidden': isScrollingDown }"
-                class="fixed right-8 bottom-28 sm:bottom-8 z-50 transition-transform duration-500 px-4 py-2 flex items-center rounded-lg bg-blue-500 shadow-md hover:bg-blue-700 focus:outline-none">
+                class="fixed right-8 bottom-28 sm:bottom-8 z-10 transition-transform duration-500 px-4 py-2 flex items-center rounded-lg bg-blue-500 shadow-md hover:bg-blue-700 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white mr-2">
                     <path d="M12 4.5v15m7.5-7.5h-15" />

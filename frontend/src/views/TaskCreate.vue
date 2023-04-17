@@ -1,5 +1,5 @@
 <template>
-    <div v-if="task"
+    <div v-if="task && categories.length && priorities.length"
         class="z-50 fixed top-0 left-0 bottom-0 right-0 flex items-center justify-center bg-black bg-opacity-50">
         <div class="relative max-w-2xl px-4">
             <!-- Modal content -->
@@ -40,14 +40,14 @@
                                 <p v-text="errors.description" class="text-red-500 font-bold text-xs"></p>
                             </div>
                             <div class="w-full flex flex-col sm:space-x-4 space-y-4 sm:space-y-0 sm:flex-row">
-                                <CustomSelect v-if="categories.length" :items="categories" label="Category"
+                                <CustomSelect :items="categories" label="Category"
                                     v-model="task.category" />
-                                <CustomSelect v-if="priorities.length" :items="priorities" label="Priority"
+                                <CustomSelect :items="priorities" label="Priority"
                                     v-model="task.priority" />
                                 <div>
                                     <label for="date" class="w-full block mb-2 text-sm font-medium text-white">Due
                                         date</label>
-                                    <Datepicker id="date" v-if="task.due_date" v-model="task.due_date" />
+                                    <Datepicker id="date" v-model="task.due_date" />
                                 </div>
                             </div>
                         </div>
@@ -132,6 +132,9 @@ function resetTask() {
         priority: null,
         category: null
     };
+    const categoryIndex = categoryId ? categories.value.findIndex((category) => category.id == categoryId) : 0;
+    task.value.category = categories.value[categoryIndex];
+    task.value.priority = priorities.value[0];
 }
 
 function resetError(field) {
@@ -152,7 +155,6 @@ async function addTask() {
     };
 
     await taskStore.add(payload);
-
     if (Object.keys(errors.value).length < 1) {
         router.push({ name: 'task.index' });
         const { setMessage } = useMessageStore();

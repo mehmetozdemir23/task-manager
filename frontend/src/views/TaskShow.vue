@@ -1,5 +1,5 @@
 <template>
-    <div v-if="task"
+    <div v-if="task && categories.length && priorities.length"
         class="z-50 w-full fixed top-0 left-0 bottom-0 right-0 flex items-center justify-center bg-black bg-opacity-50">
         <div class="relative max-w-2xl px-4">
             <!-- Modal content -->
@@ -38,9 +38,9 @@
                             <p class="text-red-500 font-bold text-sm mt-1" v-text="errors.description"></p>
                         </div>
                         <div class="w-full flex flex-col sm:space-x-4 space-y-4 sm:space-y-0 sm:flex-row ">
-                            <CustomSelect v-if="categories.length" :items="categories" label="Category"
+                            <CustomSelect :items="categories" label="Category"
                                 v-model="task.category" />
-                            <CustomSelect v-if="priorities.length" :items="priorities" label="Priority"
+                            <CustomSelect :items="priorities" label="Priority"
                                 v-model="task.priority" />
                             <div>
                                 <label for="date" class="w-full block mb-2 text-sm font-medium text-white">Due

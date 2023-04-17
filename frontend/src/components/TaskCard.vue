@@ -1,6 +1,6 @@
 <template>
     <router-link :to="{ name: 'task.show', params: { id: task.id } }" draggable="true"
-        class="overflow-hidden block relative w-72 sm:w-full sm:max-w-sm p-6 cursor-pointer border rounded-lg shadow bg-gray-800 border-gray-700 hover:border-gray-500">
+        class="overflow-hidden block relative w-96 p-6 cursor-pointer border rounded-lg shadow bg-gray-800 border-gray-700 hover:border-gray-500">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" :class="bookmarkColor"
             class="absolute top-0 -translate-y-2 right-2 w-8">
             <path fill-rule="evenodd"

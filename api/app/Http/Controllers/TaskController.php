@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\TaskResource;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
@@ -30,7 +31,7 @@ class TaskController extends Controller
         $task = Task::create(
             array_merge(
                 $request->all(),
-                ['user_id' => auth()->id()]
+                ['user_id' => $request->user_id]
             )
         );
 
