@@ -23,6 +23,6 @@ class LoginController extends Controller
 
         return response()->json([
             'email' => 'The provided credentials do not match our records.',
-        ],401);
+        ], 401);
     }
 }
